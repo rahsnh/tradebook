@@ -4,8 +4,7 @@ const bodyParser = require('body-parser');
 const app = express();
 
 require('dotenv').config();
-const db_url = 'mongodb+srv://rahsnh:Rahul.09@cluster0.jcwev.mongodb.net/cluster0?retryWrites=true&w=majority';
-//const db_url = 'mongodb://localhost:27017/defaultdb';
+const db_url = 'mongodb://localhost:27017/defaultdb';
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: true
