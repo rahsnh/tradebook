@@ -24,7 +24,7 @@ portfolioRoute.get('/portfolio', (req, res) => {
 portfolioRoute.get('/holdings', (req, res) => {
     if (req.headers['authorization'].split(" ")[1] != "abc")
         return res.send({"messageCode": 400, "message": "Invalid access token"});
-    portfolio.find({uID: req.headers['authorization'].split(" ")[1], qty: {$gt: 0}},{_id: 0, ticker: 1, avgPrice: 1, qty: 1}).then(result => {
+    portfolio.find({uID: req.headers['authorization'].split(" ")[1]},{_id: 0, ticker: 1, avgPrice: 1, qty: 1}).then(result => {
         if (result.length == 0) {
             result = {}
             result['messageCode'] = 200
