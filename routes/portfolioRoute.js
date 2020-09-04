@@ -1,8 +1,10 @@
+// Import required Modules
 const express = require('express');
 const portfolioRoute = express.Router();
 const orders = require('../models/orderSchema.js');
 const portfolio = require('../models/portfolioSchema.js');
 
+// Endpoint to fetch the portfolio of trades
 portfolioRoute.get('/portfolio', (req, res) => {
     if (req.headers['authorization'].split(" ")[1] != "abc")
         return res.send({"messageCode": 400, "message": "Invalid access token"});
@@ -18,6 +20,7 @@ portfolioRoute.get('/portfolio', (req, res) => {
     })
 })
 
+// Endpoint to fetch the holdings for an user
 portfolioRoute.get('/holdings', (req, res) => {
     if (req.headers['authorization'].split(" ")[1] != "abc")
         return res.send({"messageCode": 400, "message": "Invalid access token"});
@@ -33,6 +36,7 @@ portfolioRoute.get('/holdings', (req, res) => {
     })
 })
 
+// Endpoint to fetch returns for an user
 portfolioRoute.get('/returns', (req, res) => {
     if (req.headers['authorization'].split(" ")[1] != "abc")
         return res.send({"messageCode": 400, "message": "Invalid access token"});
