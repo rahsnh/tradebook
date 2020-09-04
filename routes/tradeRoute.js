@@ -1,9 +1,11 @@
+// Import required Modules
 const express = require('express');
 const mongoose = require('mongoose');
 const tradeRoute = express.Router();
 const orders = require('../models/orderSchema.js');
 const portfolio = require('../models/portfolioSchema.js');
 
+// Function to place a new trade order
 var buytrade = async function(ticker, orderPrice, qty, uID) {
     const session = await mongoose.startSession();
     session.startTransaction();
@@ -29,6 +31,7 @@ var buytrade = async function(ticker, orderPrice, qty, uID) {
     }
 };
 
+// Function to remove a trade order
 var selltrade = async function(ticker, orderPrice, qty, uID) {
     const session = await mongoose.startSession();
     session.startTransaction();
@@ -53,6 +56,7 @@ var selltrade = async function(ticker, orderPrice, qty, uID) {
     }
 };
 
+// Endpoint for placing a new trade
 tradeRoute.post('/buy', (req, res) => {
     if (req.headers['authorization'].split(" ")[1] != "abc")
         return res.send({"messageCode": 400, "message": "Invalid access token"});
@@ -82,6 +86,7 @@ tradeRoute.post('/buy', (req, res) => {
     })
 })
 
+// Endpoint for placing a remove trade order
 tradeRoute.post('/sell', (req, res) => {
     if (req.headers['authorization'].split(" ")[1] != "abc")
         return res.send({"messageCode": 400, "message": "Invalid access token"});
