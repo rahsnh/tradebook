@@ -30,5 +30,5 @@ app.use('/v1/trade', tradeRoute);
 const portfolioRoute = require('./routes/portfolioRoute');
 app.use('/v1/fetch', portfolioRoute);
 
-app.listen(5000);
+app.listen(process.env.PORT || 5000);
 console.log('started application');
